@@ -127,7 +127,7 @@ function Install-Package {
         else {
             switch -Wildcard ($dirName) {
                 "*Visual C++*" {
-					if ($File.Name -match "2005" {
+					if ($File.Name -match "2005") {
 						$argsList = "/q"
 					}
                     elseif ($File.Name -match "2008|2010|2012|2013") {
