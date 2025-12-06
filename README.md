@@ -17,7 +17,15 @@ It automates the entire process: downloading the repository, extracting files, i
 Open **PowerShell as Administrator** and paste the following command:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; irm https://r.koresent.ru/aio-runtimes | iex
+Set-ExecutionPolicy Bypass -Scope Process -Force; $p = "$env:TEMP\aio.ps1"; irm https://r.koresent.ru/aio-runtimes -OutFile $p; & $p; Remove-Item $p
+```
+
+### Automation
+
+Use the `-NonInteractive` switch to run the script without user prompts (useful for SCCM, MDT, or other deployment scripts):
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; $p = "$env:TEMP\aio.ps1"; irm https://r.koresent.ru/aio-runtimes -OutFile $p; & $p -NonInteractive; Remove-Item $p
 ```
 
 ### Notes
