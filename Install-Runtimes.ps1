@@ -192,9 +192,7 @@ try {
     Write-Host "📤 Extracting archive..." -ForegroundColor Cyan
     Expand-Archive -Path $zipPath -DestinationPath $tempDir -Force
         
-    $extractedRoot = (Get-ChildItem -Path $tempDir -Directory)[0]
-    $baseDir = $extractedRoot.FullName
-    $redistFolder = Join-Path $baseDir "Redist"
+    $redistFolder = Join-Path $tempDir "Redist"
     
     if (!(Test-Path $redistFolder)) {
         throw "⛔ Critical Error: 'Redist' folder not found inside downloaded package."
