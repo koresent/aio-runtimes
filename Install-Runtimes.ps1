@@ -15,6 +15,7 @@ $regPath = "HKLM:\SOFTWARE\aio-runtimes"
 $repoZipUrl = "https://github.com/koresent/aio-runtimes/releases/download/latest/aio-runtimes.zip"
 $tempDir = Join-Path $env:TEMP "aio-runtimes-$(Get-Random)"
 $global:rebootRequired = $false
+$ProgressPreference = 'SilentlyContinue'
 
 # Functions
 function Write-ProgressLine {
@@ -186,12 +187,7 @@ try {
     $zipPath = Join-Path $tempDir "main.zip"
 
     Write-Host "⬇️ Downloading archive..." -ForegroundColor Cyan
-    if ($NonInteractive) {
-        Invoke-RestMethod -Uri $repoZipUrl -OutFile $zipPath
-    }
-    else {
-        Invoke-WebRequest -Uri $repoZipUrl -OutFile $zipPath
-    }
+    Invoke-RestMethod -Uri $repoZipUrl -OutFile $zipPath
         
     Write-Host "📤 Extracting archive..." -ForegroundColor Cyan
     Expand-Archive -Path $zipPath -DestinationPath $tempDir -Force
