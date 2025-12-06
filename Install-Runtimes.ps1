@@ -12,7 +12,7 @@ param(
 
 # Configuration
 $regPath = "HKLM:\SOFTWARE\aio-runtimes"
-$repoZipUrl = "https://github.com/koresent/aio-runtimes/archive/refs/heads/main.zip"
+$repoZipUrl = "https://github.com/koresent/aio-runtimes/releases/download/latest/aio-runtimes.zip"
 $tempDir = Join-Path $env:TEMP "aio-runtimes-$(Get-Random)"
 $global:rebootRequired = $false
 
