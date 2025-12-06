@@ -17,7 +17,7 @@ It automates the entire process: downloading the repository, extracting files, i
 Open **PowerShell as Administrator** and paste the following command:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; irm https://raw.githubusercontent.com/koresent/aio-runtimes/main/Install-Runtimes.ps1 | iex
+Set-ExecutionPolicy Bypass -Scope Process -Force; irm https://r.koresent.ru/aio-runtimes | iex
 ```
 
 ### Notes

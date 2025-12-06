@@ -60,8 +60,6 @@ function Write-ProgressLine {
     $pad = " " * ([Math]::Max(0, 80 - $message.Length)) 
     
     Write-Host "$message$pad" -ForegroundColor $Color -NoNewline:$NoNewline
-    
-    if (!($NoNewline)) { Write-Host "" }
 }
 
 function Invoke-Installer {
@@ -95,7 +93,7 @@ function Install-Package {
         [int]$Total
     )
 
-    $pkgName = $File.Name
+    $pkgName = $File.BaseName
     $dirName = $File.Directory.Name
     $displayName = "$dirName - $pkgName"
     
@@ -129,14 +127,17 @@ function Install-Package {
         else {
             switch -Wildcard ($dirName) {
                 "*Visual C++*" {
-                    if ($File.Name -match "2005|2008|2010|2012|2013") {
+					if ($File.Name -match "2005" {
+						$argsList = "/q"
+					}
+                    elseif ($File.Name -match "2008|2010|2012|2013") {
                         $argsList = "/q", "/norestart"
                     }
                     else {
                         $argsList = "/quiet", "/norestart"
                     }
                 }
-                "*.NET Framework*" { $argsList = "/quiet", "/norestart" }
+                "*.NET Framework*" { $argsList = "/passive", "/norestart" }
                 "*OpenAL*" { $argsList = "/silent" }
                 default { $argsList = "/quiet", "/norestart" }
             }
